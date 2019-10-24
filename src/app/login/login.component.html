@@ -1,0 +1,13 @@
+<div class="col-md-4 card">
+  <form #f="ngForm" (ngSubmit)="onLogin(f.value)" class="text-center border border-light p-5 control-label" action="#!">
+    <div class="form-group"> <!-- left unspecified, .bmd-form-group will be automatically added (inspect the code) -->
+      <label for="formGroupExampleInput" class="bmd-label-floating">Login</label>
+      <input type="text" name="username" ngModel class="form-control" id="formGroupExampleInput">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1" class="bmd-label-floating">Password</label>
+      <input type="password" class="form-control" name="password" ngModel id="exampleInputPassword1">
+    </div>
+    <button type="submit" class="btn btn-raised btn-primary">Se connecter</button>
+  </form>
+</div>

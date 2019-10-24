@@ -1,0 +1,56 @@
+<nav>
+  <ul class="nav nav-tabs">
+  <a href="#"><img src="assets/images/logotourisme.png" alt=""></a>
+  <li class="active"><a class="clickable" (click)="onSelectedProducts()">Home</a></li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Hotels<span class="caret"></span></a>
+    <ul class="dropdown-menu nav navbar-nav">
+      <li [ngClass]="currentCategorie==c?'active':''" (click)="getProductsByCat(c)" class="list-group-item clickable" *ngFor="let c of categories._embedded.categories">
+        {{c.name}}
+      </li>
+    </ul>
+  </li>
+  <li><a routerLink="/caddy">Réservation
+  </a></li>
+<!-- Caddy -->
+  <ul class=" nav navbar-nav pull-right">
+    <li>
+      <a routerLink="/caddy">
+          <span class="badge">Reservation :
+            {{caddyService.getSize()}}</span>
+        <img class="img-circle img-thumbnail img-rounded" src="https://img.icons8.com/clouds/100/000000/hotel-room-key--v1.png" height="16" width="16">
+      </a>
+    </li>
+  </ul>
+  <!-- Connexion -->
+  <ul *ngIf="!this.authService.isAuthenticated()" class=" nav navbar-nav pull-right">
+    <li>
+      <a (click)="onLogin()"class="btn"> Se connecter </a>
+    </li>
+  </ul>
+  <!-- Connexion -->
+  <ul *ngIf="this.authService.isAuthenticated()" class=" nav navbar-nav pull-right">
+    <li>
+      <a (click)="onLogout()"class="btn">
+        <span class="glyphicon glyphicon-log-out"></span>
+      </a>
+    </li>
+  </ul>
+</ul>
+<!-- Fin nav -->
+</nav>
+
+<div class="row">
+  <div class="col-md-3">
+    <ul class="list-group" *ngIf="categories">
+      <li [ngClass]="currentCategorie==c?'active':''"  (click)="getProductsByCat(c)" class="list-group-item clickable" *ngFor="let c of categories._embedded.categories">
+        {{c.name}}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <router-outlet>
+
+    </router-outlet>
+  </div>
+</div>
